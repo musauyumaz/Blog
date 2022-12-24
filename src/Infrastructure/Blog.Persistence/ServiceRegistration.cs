@@ -1,4 +1,5 @@
-﻿using Blog.Application.Repositories.AboutImageFiles;
+﻿using Blog.Application.Abstractions.Services;
+using Blog.Application.Repositories.AboutImageFiles;
 using Blog.Application.Repositories.Abouts;
 using Blog.Application.Repositories.Categories;
 using Blog.Application.Repositories.Contacts;
@@ -18,6 +19,7 @@ using Blog.Persistence.Repositories.Files;
 using Blog.Persistence.Repositories.Headings;
 using Blog.Persistence.Repositories.WriterImageFiles;
 using Blog.Persistence.Repositories.Writers;
+using Blog.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -47,6 +49,8 @@ namespace Blog.Persistence
             services.AddScoped<IWriterImageFileWriteRepository, WriterImageFileWriteRepository>();
             services.AddScoped<IWriterReadRepository, WriterReadRepository>();
             services.AddScoped<IWriterWriteRepository, WriterWriteRepository>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
         }
     }
 }

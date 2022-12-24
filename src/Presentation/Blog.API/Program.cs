@@ -1,14 +1,19 @@
+using Blog.Application;
 using Blog.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+#region Services
+builder.Services.AddPersistenceServices();
+builder.Services.AddApplicationServices();
+#endregion
+
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins("https://localhost:7027", "http://localhost:5044").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
 
 builder.Services.AddControllers();
 
-#region Services
-builder.Services.AddPersistenceServices();
-#endregion
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -22,7 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
