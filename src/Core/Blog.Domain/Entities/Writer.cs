@@ -12,5 +12,7 @@ namespace Blog.Domain.Entities
 
         public virtual ICollection<WriterImageFile> WriterImageFiles { get; set; }
         public virtual ICollection<Heading> Headings { get; set; }
+        public virtual ICollection<Content> Contents { get; set; }
+
     }
 }
