@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Blog.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -185,6 +187,7 @@ namespace Blog.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HeadingId = table.Column<int>(type: "int", nullable: false),
+                    WriterId = table.Column<int>(type: "int", nullable: true),
                     Value = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -199,6 +202,60 @@ namespace Blog.Persistence.Migrations
                         principalTable: "Headings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Contents_Writers_WriterId",
+                        column: x => x.WriterId,
+                        principalTable: "Writers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreatedDate", "Description", "IsActive", "Name", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6292), "Burası Eğitim Kategorisidir.", true, "Eğitim", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6296), "Burası Tiyatro Kategorisidir.", true, "Tiyatro", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6298), "Burası Kitap Kategorisidir.", true, "Kitap", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6299), "Burası Spor Kategorisidir.", true, "Spor", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6300), "Burası Film Kategorisidir.", true, "Film", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6302), "Burası Dizi Kategorisidir.", true, "Dizi", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Writers",
+                columns: new[] { "Id", "CreatedDate", "Email", "FirstName", "IsActive", "LastName", "Password", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6649), "aliyildiz@gmail.com", "Ali", true, "Yıldız", "1", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6653), "mehmet@gmail.com", "Mehmet", true, "Çınar", "11", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6654), "emel@gmail.com", "Emel", true, "Öztürk", "123", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6656), "gizem@hotmail.com", "Gizem", true, "Yıldız", "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6657), "asli@gmail.com", "Aslı", true, "Kaya", "00011", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Headings",
+                columns: new[] { "Id", "CategoryId", "CreatedDate", "IsActive", "Name", "UpdatedDate", "WriterId" },
+                values: new object[,]
+                {
+                    { 1, 6, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3361), true, "Breaking Bad", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 2, 5, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3364), true, "Green Book", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 3, 3, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3366), true, "İtiraflarım", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, 6, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3367), true, "La Casa De Papel", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 5, 2, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3369), true, "Venedik Taciri", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Contents",
+                columns: new[] { "Id", "CreatedDate", "HeadingId", "IsActive", "UpdatedDate", "Value", "WriterId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(465), 1, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Walter White'ın efsane yaşam öyküsü", 3 },
+                    { 2, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(469), 1, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Küçük Walter seni çok özledik keşke bu dizi devam etse", 4 },
+                    { 3, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(471), 2, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bu film 2019 yılında Oscar ödülüne aday oldu ve Oscar ödülünü almayı başardı", 1 },
+                    { 4, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(472), 2, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "WÇok beğendiğim efsane bir film olmuş", 3 },
+                    { 5, new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(474), 2, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hayatımda izlediğim en iyi 10 filmden biri oldu.", 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -210,6 +267,11 @@ namespace Blog.Persistence.Migrations
                 name: "IX_Contents_HeadingId",
                 table: "Contents",
                 column: "HeadingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contents_WriterId",
+                table: "Contents",
+                column: "WriterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Headings_CategoryId",

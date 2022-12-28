@@ -99,7 +99,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7879),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6292),
                             Description = "Burası Eğitim Kategorisidir.",
                             IsActive = true,
                             Name = "Eğitim",
@@ -108,7 +108,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7883),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6296),
                             Description = "Burası Tiyatro Kategorisidir.",
                             IsActive = true,
                             Name = "Tiyatro",
@@ -117,7 +117,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7885),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6298),
                             Description = "Burası Kitap Kategorisidir.",
                             IsActive = true,
                             Name = "Kitap",
@@ -126,7 +126,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7887),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6299),
                             Description = "Burası Spor Kategorisidir.",
                             IsActive = true,
                             Name = "Spor",
@@ -135,7 +135,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7888),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6300),
                             Description = "Burası Film Kategorisidir.",
                             IsActive = true,
                             Name = "Film",
@@ -144,7 +144,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 4, DateTimeKind.Utc).AddTicks(7889),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 163, DateTimeKind.Utc).AddTicks(6302),
                             Description = "Burası Dizi Kategorisidir.",
                             IsActive = true,
                             Name = "Dizi",
@@ -234,7 +234,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(2118),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(465),
                             HeadingId = 1,
                             IsActive = true,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -244,7 +244,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(2121),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(469),
                             HeadingId = 1,
                             IsActive = true,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -254,7 +254,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(2123),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(471),
                             HeadingId = 2,
                             IsActive = true,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -264,7 +264,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(2124),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(472),
                             HeadingId = 2,
                             IsActive = true,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -274,7 +274,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(2126),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(474),
                             HeadingId = 2,
                             IsActive = true,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -363,7 +363,7 @@ namespace Blog.Persistence.Migrations
                         {
                             Id = 1,
                             CategoryId = 6,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(4116),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3361),
                             IsActive = true,
                             Name = "Breaking Bad",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -373,7 +373,7 @@ namespace Blog.Persistence.Migrations
                         {
                             Id = 2,
                             CategoryId = 5,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(4119),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3364),
                             IsActive = true,
                             Name = "Green Book",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -383,7 +383,7 @@ namespace Blog.Persistence.Migrations
                         {
                             Id = 3,
                             CategoryId = 3,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(4120),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3366),
                             IsActive = true,
                             Name = "İtiraflarım",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -393,7 +393,7 @@ namespace Blog.Persistence.Migrations
                         {
                             Id = 4,
                             CategoryId = 6,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(4121),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3367),
                             IsActive = true,
                             Name = "La Casa De Papel",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -403,7 +403,7 @@ namespace Blog.Persistence.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(4123),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(3369),
                             IsActive = true,
                             Name = "Venedik Taciri",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -456,7 +456,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(6309),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6649),
                             Email = "aliyildiz@gmail.com",
                             FirstName = "Ali",
                             IsActive = true,
@@ -467,7 +467,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(6313),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6653),
                             Email = "mehmet@gmail.com",
                             FirstName = "Mehmet",
                             IsActive = true,
@@ -478,7 +478,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(6315),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6654),
                             Email = "emel@gmail.com",
                             FirstName = "Emel",
                             IsActive = true,
@@ -489,7 +489,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(6317),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6656),
                             Email = "gizem@hotmail.com",
                             FirstName = "Gizem",
                             IsActive = true,
@@ -500,7 +500,7 @@ namespace Blog.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2022, 12, 24, 11, 32, 23, 5, DateTimeKind.Utc).AddTicks(6319),
+                            CreatedDate = new DateTime(2022, 12, 28, 11, 39, 50, 164, DateTimeKind.Utc).AddTicks(6657),
                             Email = "asli@gmail.com",
                             FirstName = "Aslı",
                             IsActive = true,

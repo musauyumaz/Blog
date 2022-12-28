@@ -31,8 +31,12 @@ namespace Blog.Persistence.Services
             return new() { Id = category.Id, Name = category.Name, Description = category.Description, CreatedDate = category.CreatedDate };
         }
 
-        public async Task<List<ListCategoryDTO>> GetAllAsync()
-            => await _categoryReadRepository.GetAll().Select(c => new ListCategoryDTO { Name = c.Name, Description = c.Description }).ToListAsync();
+        public async Task<(List<ListCategoryDTO>, int totalCategoryCount)> GetAllAsync(int page = 0, int size = 5)
+            => (await _categoryReadRepository.GetAll()
+                                            .Skip(page * size)
+                                            .Take(size)
+                                            .Select(c => new ListCategoryDTO { Id = c.Id, Name = c.Name, Description = c.Description, CreatedDate = c.CreatedDate, UpdatedDate = c.UpdatedDate, IsActive = c.IsActive })
+                                            .ToListAsync(), _categoryReadRepository.GetAll().Count());
 
         public async Task<CategoryDTO> GetByIdAsync(int id)
         {

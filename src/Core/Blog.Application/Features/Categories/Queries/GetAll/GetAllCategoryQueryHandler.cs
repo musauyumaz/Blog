@@ -14,8 +14,8 @@ namespace Blog.Application.Features.Categories.Queries.GetAll
 
         public async Task<GetAllCategoryQueryResponse> Handle(GetAllCategoryQueryRequest request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryService.GetAllAsync();
-            return new() { Categories= categories };
+            var (categoryList,totalCategoryCount) = await _categoryService.GetAllAsync(request.Page, request.Size);
+            return new() { Categories = categoryList, TotalCategoryCount = totalCategoryCount };
         }
     }
 }
