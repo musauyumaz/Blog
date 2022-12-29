@@ -15,7 +15,7 @@ namespace Blog.Application.Features.Categories.Commands.Update
 
         public async Task<UpdateCategoryCommandResponse> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            CategoryDTO categoryDTO = await _categoryService.UpdateCategoryAsync(new() { Id = request.Id, Name = request.Name, Description = request.Description, IsActive = request.IsActive });
+            CategoryDTO categoryDTO = await _categoryService.UpdateCategoryAsync(request.UpdateCategoryDTO);
             return new() { CategoryDTO = categoryDTO };
         }
     }

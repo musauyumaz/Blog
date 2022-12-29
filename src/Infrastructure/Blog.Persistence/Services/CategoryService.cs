@@ -41,12 +41,34 @@ namespace Blog.Persistence.Services
         public async Task<CategoryDTO> GetByIdAsync(int id)
         {
             Category category = await _categoryReadRepository.GetByIdAsync(id);
-            return new() { Id = category.Id, Name = category.Name, Description = category.Description, CreatedDate = category.CreatedDate };
+            return new() { Id = category.Id, Name = category.Name, Description = category.Description, IsActive = category.IsActive, CreatedDate = category.CreatedDate };
         }
+
+        public async Task<CategoryHeadingsDTO> GetCategoryHeadingsByCategoryId(int id)
+        {
+            CategoryHeadingsDTO? categoryHeadings = await _categoryReadRepository.Table
+                                         .Include(c => c.Headings)
+                                         .Select(c => new CategoryHeadingsDTO
+                                         {
+                                             Id = c.Id,
+                                             CategoryName = c.Name,
+                                             HeadingsName = c.Headings.Select(h => h.Name).ToList()
+                                         })
+                                         .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (categoryHeadings == null)
+                throw new Exception("Kategori Bulunamadı");
+            return categoryHeadings;
+        }
+
 
         public async Task<CategoryDTO> UpdateCategoryAsync(UpdateCategoryDTO updateCategoryDTO)
         {
-            Category category = _categoryWriteRepository.Update(new() { Id = updateCategoryDTO.Id, Name = updateCategoryDTO.Name, Description = updateCategoryDTO.Description, IsActive = updateCategoryDTO.IsActive });
+            Category updatedCategory = await _categoryReadRepository.GetByIdAsync(updateCategoryDTO.Id, true);
+            updatedCategory.Name = updateCategoryDTO.Name;
+            updatedCategory.Description = updateCategoryDTO.Description;
+            updatedCategory.IsActive = updateCategoryDTO.IsActive;
+            Category category = _categoryWriteRepository.Update(updatedCategory);
             await _categoryWriteRepository.SaveAsync();
             return new() { Id = category.Id, Name = category.Name, Description = category.Description, CreatedDate = category.CreatedDate };
         }

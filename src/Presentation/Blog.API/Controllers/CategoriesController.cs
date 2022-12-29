@@ -3,6 +3,7 @@ using Blog.Application.Features.Categories.Commands.Delete;
 using Blog.Application.Features.Categories.Commands.Update;
 using Blog.Application.Features.Categories.Queries.GetAll;
 using Blog.Application.Features.Categories.Queries.GetById;
+using Blog.Application.Features.Categories.Queries.GetCategoryHeadingsByCategoryId;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,12 @@ namespace Blog.API.Controllers
         public async Task<IActionResult> GetById([FromRoute] GetByIdCategoryQueryRequest getByIdCategoryQueryRequest)
         {
             GetByIdCategoryQueryResponse response = await _mediator.Send(getByIdCategoryQueryRequest);
+            return Ok(response);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetCategoryHeadingsByCategoryId([FromRoute] GetCategoryHeadingsByCategoryIdQueryRequest getCategoryHeadingsByCategoryIdQueryRequest)
+        {
+            GetCategoryHeadingsByCategoryIdQueryResponse response = await _mediator.Send(getCategoryHeadingsByCategoryIdQueryRequest);
             return Ok(response);
         }
         [HttpPost]
