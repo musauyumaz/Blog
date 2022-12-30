@@ -51,6 +51,7 @@ namespace Blog.Persistence
             services.AddScoped<IWriterWriteRepository, WriterWriteRepository>();
 
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IWriterService, WriterService>();
         }
     }
 }

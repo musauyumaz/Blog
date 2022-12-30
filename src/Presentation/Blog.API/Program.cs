@@ -1,4 +1,6 @@
 using Blog.Application;
+using Blog.Infrastructure;
+using Blog.Infrastructure.Services.Storage.Local;
 using Blog.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Services
 builder.Services.AddPersistenceServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddStorage<LocalStorage>();
 #endregion
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins("https://localhost:7027", "http://localhost:5044").AllowAnyHeader().AllowAnyMethod().AllowCredentials()));
