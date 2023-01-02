@@ -15,7 +15,7 @@ namespace Blog.Application.Features.Writers.Commands.Create
 
         public async Task<CreateWriterCommandResponse> Handle(CreateWriterCommandRequest request, CancellationToken cancellationToken)
         {
-            WriterDTO writer = await _writerService.AddWriterAsync(new() { FirstName = request.FirstName, LastName = request.LastName, Email = request.Email, Password = request.Password });
+            WriterDTO writer = await _writerService.AddWriterAsync(new() { FirstName = request.FirstName, LastName = request.LastName, About = request.About, Email = request.Email, Password = request.Password });
             return new() { WriterDTO = writer };
         }
     }

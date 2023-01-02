@@ -3,8 +3,8 @@ using Blog.Application.Features.Writers.Commands.Delete;
 using Blog.Application.Features.Writers.Commands.Update;
 using Blog.Application.Features.Writers.Queries.GetAll;
 using Blog.Application.Features.Writers.Queries.GetById;
+using Blog.Application.Features.Writers.Queries.GetHeadingsByWriter;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.API.Controllers
@@ -27,9 +27,15 @@ namespace Blog.API.Controllers
             return Ok(response);
         }
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetAll([FromRoute] GetByIdWriterQueryRequest getByIdWriterQueryRequest)
+        public async Task<IActionResult> GetById([FromRoute] GetByIdWriterQueryRequest getByIdWriterQueryRequest)
         {
             GetByIdWriterQueryResponse response = await _mediator.Send(getByIdWriterQueryRequest);
+            return Ok(response);
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetHeadingsByWriterId([FromRoute] GetHeadingsByWriterQueryRequest getHeadingsByWriterIdQueryRequest)
+        {
+            GetHeadingsByWriterQueryResponse response = await _mediator.Send(getHeadingsByWriterIdQueryRequest);
             return Ok(response);
         }
         [HttpDelete("{Id}")]

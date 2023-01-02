@@ -19,16 +19,16 @@ namespace Blog.Persistence.Services
 
         public async Task<WriterDTO> AddWriterAsync(AddWriterDTO addWriterDTO)
         {
-            Writer writer = await _writerWriteRepository.AddAsync(new() { FirstName = addWriterDTO.FirstName, LastName = addWriterDTO.LastName, Email = addWriterDTO.Email, Password = addWriterDTO.Password });
+            Writer writer = await _writerWriteRepository.AddAsync(new() { FirstName = addWriterDTO.FirstName, LastName = addWriterDTO.LastName, About = addWriterDTO.About, Email = addWriterDTO.Email, Password = addWriterDTO.Password });
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
 
         public async Task<WriterDTO> DeleteWriterAsync(int id)
         {
             Writer writer = await _writerWriteRepository.RemoveAsync(id);
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
 
         public async Task<(List<ListWriterDTO> writers, int totalWriterCount)> GetAllAsync(int page, int size)
@@ -36,9 +36,11 @@ namespace Blog.Persistence.Services
             (
                 w => new ListWriterDTO
                 {
+                    Id = w.Id,
                     Email = w.Email,
                     FirstName = w.FirstName,
                     LastName = w.LastName,
+                    About = w.About,
                     Photos = w.WriterImageFiles.Select(i => i.FileName).ToList()
                 }
             ).ToListAsync(), await _writerReadRepository.GetAll().CountAsync());
@@ -46,8 +48,19 @@ namespace Blog.Persistence.Services
         public async Task<WriterDTO> GetByIdAsync(int id)
         {
             Writer writer = await _writerReadRepository.GetByIdAsync(id);
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
+
+        public async Task<List<string>> GetWriterHeadingsByWriterIdAsync(int id)
+            => (await _writerReadRepository.Table.Include(w => w.Headings)
+                .Select(w => new
+                {
+                    Id = w.Id,
+                    Headings = w.Headings.Select(h => h.Name).ToList()
+                }
+            ).FirstOrDefaultAsync(w => w.Id == id)).Headings;
+
+
 
         public async Task<WriterDTO> UpdateWriterAsync(UpdateWriterDTO updateWriterDTO)
         {
@@ -55,10 +68,11 @@ namespace Blog.Persistence.Services
             updatedWriter.FirstName = updateWriterDTO.FirstName;
             updatedWriter.LastName = updateWriterDTO.LastName;
             updatedWriter.Email = updateWriterDTO.Email;
+            updatedWriter.About = updateWriterDTO.About;
             updatedWriter.IsActive = updateWriterDTO.IsActive;
             Writer writer = _writerWriteRepository.Update(updatedWriter);
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
     }
 }

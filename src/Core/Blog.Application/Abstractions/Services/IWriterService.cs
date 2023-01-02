@@ -9,6 +9,8 @@ namespace Blog.Application.Abstractions.Services
         Task<WriterDTO> DeleteWriterAsync(int id);
         Task<WriterDTO> UpdateWriterAsync(UpdateWriterDTO updateWriterDTO);
         Task<WriterDTO> GetByIdAsync(int id);
+        Task<List<string>> GetWriterHeadingsByWriterIdAsync(int id);
+
     }
 }
 
