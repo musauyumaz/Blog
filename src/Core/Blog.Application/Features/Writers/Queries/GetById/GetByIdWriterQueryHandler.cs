@@ -1,10 +1,12 @@
 ﻿using Blog.Application.Abstractions.Services;
+using Blog.Application.Features.Writers.Constants;
 using Blog.Application.Features.Writers.DTOs;
+using Blog.Application.Utilities;
 using MediatR;
 
 namespace Blog.Application.Features.Writers.Queries.GetById
 {
-    public class GetByIdWriterQueryHandler : IRequestHandler<GetByIdWriterQueryRequest, GetByIdWriterQueryResponse>
+    public class GetByIdWriterQueryHandler : IRequestHandler<GetByIdWriterQueryRequest, IDataResult<WriterDTO>>
     {
         private readonly IWriterService _writerService;
 
@@ -13,10 +15,10 @@ namespace Blog.Application.Features.Writers.Queries.GetById
             _writerService = writerService;
         }
 
-        public async Task<GetByIdWriterQueryResponse> Handle(GetByIdWriterQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<WriterDTO>> Handle(GetByIdWriterQueryRequest request, CancellationToken cancellationToken)
         {
-            WriterDTO writer = await _writerService.GetByIdAsync(request.Id);
-            return new() { WriterDTO = writer };
+            WriterDTO writerDto = await _writerService.GetByIdAsync(request.Id);
+            return new SuccessDataResult<WriterDTO>(Messages.GetWriter,writerDto);
         }
     }
 }

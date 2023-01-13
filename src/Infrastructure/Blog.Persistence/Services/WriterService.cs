@@ -21,18 +21,17 @@ namespace Blog.Persistence.Services
         {
             Writer writer = await _writerWriteRepository.AddAsync(new() { FirstName = addWriterDTO.FirstName, LastName = addWriterDTO.LastName, About = addWriterDTO.About, Email = addWriterDTO.Email, Password = addWriterDTO.Password });
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, Title = writer.Title, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
-
         public async Task<WriterDTO> DeleteWriterAsync(int id)
         {
             Writer writer = await _writerWriteRepository.RemoveAsync(id);
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, Title = writer.Title, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
-
-        public async Task<(List<ListWriterDTO> writers, int totalWriterCount)> GetAllAsync(int page, int size)
-            => (await _writerReadRepository.Table.Include(w => w.WriterImageFiles).Skip(page * size).Take(size).Select
+        public async Task<ListWriterRootDTO> GetAllAsync(int page, int size)
+        {
+            List<ListWriterDTO> listWriters = await _writerReadRepository.Table.Include(w => w.WriterImageFiles).Skip(page * size).Take(size).Select
             (
                 w => new ListWriterDTO
                 {
@@ -41,16 +40,19 @@ namespace Blog.Persistence.Services
                     FirstName = w.FirstName,
                     LastName = w.LastName,
                     About = w.About,
+                    Title = w.Title,
                     Photos = w.WriterImageFiles.Select(i => i.FileName).ToList()
                 }
-            ).ToListAsync(), await _writerReadRepository.GetAll().CountAsync());
+            ).ToListAsync();
+            int count = await _writerReadRepository.GetAll().CountAsync();
+            return new() { Writers = listWriters, TotalWriterCount = count };
 
+        }
         public async Task<WriterDTO> GetByIdAsync(int id)
         {
             Writer writer = await _writerReadRepository.GetByIdAsync(id);
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, Title = writer.Title, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
-
         public async Task<List<string>> GetWriterHeadingsByWriterIdAsync(int id)
             => (await _writerReadRepository.Table.Include(w => w.Headings)
                 .Select(w => new
@@ -59,9 +61,6 @@ namespace Blog.Persistence.Services
                     Headings = w.Headings.Select(h => h.Name).ToList()
                 }
             ).FirstOrDefaultAsync(w => w.Id == id)).Headings;
-
-
-
         public async Task<WriterDTO> UpdateWriterAsync(UpdateWriterDTO updateWriterDTO)
         {
             Writer updatedWriter = await _writerReadRepository.GetByIdAsync(updateWriterDTO.Id);
@@ -69,10 +68,11 @@ namespace Blog.Persistence.Services
             updatedWriter.LastName = updateWriterDTO.LastName;
             updatedWriter.Email = updateWriterDTO.Email;
             updatedWriter.About = updateWriterDTO.About;
+            updatedWriter.Title = updateWriterDTO.Title;
             updatedWriter.IsActive = updateWriterDTO.IsActive;
             Writer writer = _writerWriteRepository.Update(updatedWriter);
             await _writerWriteRepository.SaveAsync();
-            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
+            return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, Title = writer.Title, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
     }
 }

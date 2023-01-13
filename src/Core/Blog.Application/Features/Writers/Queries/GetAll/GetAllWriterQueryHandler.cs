@@ -1,9 +1,12 @@
 ﻿using Blog.Application.Abstractions.Services;
+using Blog.Application.Features.Writers.Constants;
+using Blog.Application.Features.Writers.DTOs;
+using Blog.Application.Utilities;
 using MediatR;
 
 namespace Blog.Application.Features.Writers.Queries.GetAll
 {
-    public class GetAllWriterQueryHandler : IRequestHandler<GetAllWriterQueryRequest, GetAllWriterQueryResponse>
+    public class GetAllWriterQueryHandler : IRequestHandler<GetAllWriterQueryRequest, IDataResult<ListWriterRootDTO>>
     {
         private readonly IWriterService _writerService;
 
@@ -12,10 +15,10 @@ namespace Blog.Application.Features.Writers.Queries.GetAll
             _writerService = writerService;
         }
 
-        public async Task<GetAllWriterQueryResponse> Handle(GetAllWriterQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<ListWriterRootDTO>> Handle(GetAllWriterQueryRequest request, CancellationToken cancellationToken)
         {
             var writers = await _writerService.GetAllAsync(request.Page, request.Size);
-            return new() { Writers = writers.writers, TotalWriterCount = writers.totalWriterCount };
+            return new SuccessDataResult<ListWriterRootDTO>(Messages.GetAllWriter,writers);
         }
     }
 }

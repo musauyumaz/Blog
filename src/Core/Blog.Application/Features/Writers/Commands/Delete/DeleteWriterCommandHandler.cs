@@ -1,10 +1,12 @@
 ﻿using Blog.Application.Abstractions.Services;
+using Blog.Application.Features.Writers.Constants;
 using Blog.Application.Features.Writers.DTOs;
+using Blog.Application.Utilities;
 using MediatR;
 
 namespace Blog.Application.Features.Writers.Commands.Delete
 {
-    public class DeleteWriterCommandHandler : IRequestHandler<DeleteWriterCommandRequest, DeleteWriterCommandResponse>
+    public class DeleteWriterCommandHandler : IRequestHandler<DeleteWriterCommandRequest, IDataResult<WriterDTO>>
     {
         private readonly IWriterService _writerService;
 
@@ -13,10 +15,10 @@ namespace Blog.Application.Features.Writers.Commands.Delete
             _writerService = writerService;
         }
 
-        public async Task<DeleteWriterCommandResponse> Handle(DeleteWriterCommandRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<WriterDTO>> Handle(DeleteWriterCommandRequest request, CancellationToken cancellationToken)
         {
-            WriterDTO writer = await _writerService.DeleteWriterAsync(request.Id);
-            return new() { WriterDTO = writer };
+            WriterDTO writerDto = await _writerService.DeleteWriterAsync(request.Id);
+            return new SuccessDataResult<WriterDTO>(Messages.DeleteWriter, writerDto) ;
         }
     }
 }

@@ -9,4 +9,9 @@
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }
+    public class CategoryListRootDTO
+    {
+        public List<ListCategoryDTO> Categories { get; set; }
+        public int TotalCategoryCount { get; set; }
+    }
 }

@@ -10,6 +10,7 @@ namespace Blog.Domain.Entities
         public string About { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Title { get; set; }
 
         public virtual ICollection<WriterImageFile> WriterImageFiles { get; set; }
         public virtual ICollection<Heading> Headings { get; set; }

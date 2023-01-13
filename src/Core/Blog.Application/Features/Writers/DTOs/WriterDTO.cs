@@ -8,6 +8,7 @@
         public string Email { get; set; }
         public string About { get; set; }
         public bool IsActive { get; set; }
+        public string Title { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

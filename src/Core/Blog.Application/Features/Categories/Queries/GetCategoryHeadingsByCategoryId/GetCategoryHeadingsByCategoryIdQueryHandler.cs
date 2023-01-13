@@ -1,9 +1,12 @@
 ﻿using Blog.Application.Abstractions.Services;
+using Blog.Application.Features.Categories.Constants;
+using Blog.Application.Features.Categories.DTOs;
+using Blog.Application.Utilities;
 using MediatR;
 
 namespace Blog.Application.Features.Categories.Queries.GetCategoryHeadingsByCategoryId
 {
-    public class GetCategoryHeadingsByCategoryIdQueryHandler : IRequestHandler<GetCategoryHeadingsByCategoryIdQueryRequest, GetCategoryHeadingsByCategoryIdQueryResponse>
+    public class GetCategoryHeadingsByCategoryIdQueryHandler : IRequestHandler<GetCategoryHeadingsByCategoryIdQueryRequest, IDataResult<CategoryHeadingsDTO>>
     {
         private readonly ICategoryService _categoryService;
 
@@ -12,10 +15,10 @@ namespace Blog.Application.Features.Categories.Queries.GetCategoryHeadingsByCate
             _categoryService = categoryService;
         }
 
-        public async Task<GetCategoryHeadingsByCategoryIdQueryResponse> Handle(GetCategoryHeadingsByCategoryIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<CategoryHeadingsDTO>> Handle(GetCategoryHeadingsByCategoryIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await _categoryService.GetCategoryHeadingsByCategoryId(request.Id);
-            return new() { CategoryName = data.CategoryName, HeadingsName = data.HeadingsName };
+            CategoryHeadingsDTO categoryHeadingsDTO = await _categoryService.GetCategoryHeadingsByCategoryId(request.Id);
+            return new SuccessDataResult<CategoryHeadingsDTO>(Messages.GetCategoryHeadingsByCategory, categoryHeadingsDTO);
         }
     }
 }

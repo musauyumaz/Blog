@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{914A9A7D-4E3B-4BF7-999F-3B9DD896C474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Domain", "src\Core\Blog.Domain\Blog.Domain.csproj", "{292A9B87-F061-4DAC-BA90-4CD90662C9B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Domain", "src\Core\Blog.Domain\Blog.Domain.csproj", "{292A9B87-F061-4DAC-BA90-4CD90662C9B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Application", "src\Core\Blog.Application\Blog.Application.csproj", "{DCEDD891-61A7-43D3-AC3D-B8994AB3D55A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Application", "src\Core\Blog.Application\Blog.Application.csproj", "{DCEDD891-61A7-43D3-AC3D-B8994AB3D55A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Infrastructure", "src\Infrastructure\Blog.Infrastructure\Blog.Infrastructure.csproj", "{131C100B-723F-4002-87A8-653CDA7A7B64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Infrastructure", "src\Infrastructure\Blog.Infrastructure\Blog.Infrastructure.csproj", "{131C100B-723F-4002-87A8-653CDA7A7B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Persistence", "src\Infrastructure\Blog.Persistence\Blog.Persistence.csproj", "{E0E3540A-77A1-49FA-8B32-30BC653F4C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Persistence", "src\Infrastructure\Blog.Persistence\Blog.Persistence.csproj", "{E0E3540A-77A1-49FA-8B32-30BC653F4C95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.API", "src\Presentation\Blog.API\Blog.API.csproj", "{933A2F2E-2B79-458A-AE9E-A9CE103748FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.API", "src\Presentation\Blog.API\Blog.API.csproj", "{933A2F2E-2B79-458A-AE9E-A9CE103748FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
