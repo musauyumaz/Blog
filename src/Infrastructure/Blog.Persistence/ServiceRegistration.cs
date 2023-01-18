@@ -52,6 +52,7 @@ namespace Blog.Persistence
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IWriterService, WriterService>();
+            services.AddScoped<IHeadingService, HeadingService>();
         }
     }
 }

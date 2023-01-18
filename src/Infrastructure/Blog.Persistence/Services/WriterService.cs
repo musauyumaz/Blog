@@ -19,7 +19,7 @@ namespace Blog.Persistence.Services
 
         public async Task<WriterDTO> AddWriterAsync(AddWriterDTO addWriterDTO)
         {
-            Writer writer = await _writerWriteRepository.AddAsync(new() { FirstName = addWriterDTO.FirstName, LastName = addWriterDTO.LastName, About = addWriterDTO.About, Email = addWriterDTO.Email, Password = addWriterDTO.Password });
+            Writer writer = await _writerWriteRepository.AddAsync(new() { FirstName = addWriterDTO.FirstName, LastName = addWriterDTO.LastName, About = addWriterDTO.About, Email = addWriterDTO.Email, Password = addWriterDTO.Password, Title = addWriterDTO.Title });
             await _writerWriteRepository.SaveAsync();
             return new() { Id = writer.Id, FirstName = writer.FirstName, LastName = writer.LastName, Email = writer.Email, About = writer.About, Title = writer.Title, IsActive = writer.IsActive, CreatedDate = writer.CreatedDate };
         }
